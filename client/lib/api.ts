@@ -13,4 +13,20 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
+// Debugging: log failed responses so registration/login 404/500 are easier to diagnose
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        try {
+            const config = error?.config || {};
+            const url = config.url || '(unknown url)';
+            const method = (config.method || 'unknown').toUpperCase();
+            const status = error?.response?.status;
+            console.error(`[api] ${method} ${url} ->`, status, error?.response?.data || error.message);
+        } catch (e) {
+            // ignore logging errors
+        }
+        return Promise.reject(error);
+    }
+);
 export default api;
