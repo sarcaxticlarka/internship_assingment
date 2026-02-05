@@ -109,6 +109,4 @@ npm run dev
 │   │   ├── routes/         # API Endpoint Definitions
 │   │   └── utils/          # Helpers (Swagger)
 ```
-
-## 📈 Scalability Note
-See [scalability.md](./scalability.md) for details on how this architecture supports microservices, caching, and load balancing.
+ 
